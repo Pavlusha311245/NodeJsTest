@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+#    app:
+#        build: .
+#        container_name: ${PROJECT_NAME}-app
+#        ports:
+#            - "8080:3000"
+#        links:
+#            - postgres
+#        networks:
+#            - ${PROJECT_NAME}
+    postgres:
+        image: postgres
+        restart: always
+        container_name: ${PROJECT_NAME}-db
+        volumes:
+            - "./postgres:/var/lib/postgresql/data"
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - "5432:5432"
+        networks: 
+            - ${PROJECT_NAME}
+
+networks: 
+    ${PROJECT_NAME}:
+        driver: bridge
