@@ -22,9 +22,3 @@ services:
             - POSTGRES_PASSWORD=postgres
         ports:
             - "5432:5432"
-        networks: 
-            - ${PROJECT_NAME}
-
-networks: 
-    ${PROJECT_NAME}:
-        driver: bridge

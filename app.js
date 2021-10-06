@@ -13,7 +13,6 @@ const sequelize = new Sequelize('postgres', 'postgres', 'postgres', {
 });
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 const app = express();
 
