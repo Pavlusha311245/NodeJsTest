@@ -12,9 +12,21 @@ router.get('/', function (req, res, next) {
 
 /* GET user */
 router.get('/:id', function (req, res, next) {
-    User.findAll({where: {id: req.params.id}}).then(user => {
+    User.findOne({where: {id: req.params.id}}).then(user => {
         res.send(user)
     }).catch(err => console.log(err));
 });
+
+router.post('/', function (req, res, next) {
+    User.create(req.body).then(user => {
+        res.send(user)
+    }).catch(err => console.log(err))
+})
+
+router.put('/:id', function (req, res, next) {
+    User.update(req.body, {where: {id: req.params.id}}).then(user => {
+        res.send(User.findByPk(req.params.id))
+    }).catch(err => console.log(err))
+})
 
 module.exports = router;

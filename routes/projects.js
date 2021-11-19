@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 
 /* GET projects */
 router.get('/:id', function (req, res, next) {
-    Project.findAll({where: {id: req.params.id}}).then(project => {
+    Project.findOne({where: {id: req.params.id}}).then(project => {
         res.send(project)
     }).catch(err => console.log(err));
 });
@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
     Project.update(req.body, {where: {id: req.params.id}}).then(project => {
-        res.send(project)
+        res.send(Project.findByPk(req.params.id))
     }).catch(err => console.log(err))
 });
 

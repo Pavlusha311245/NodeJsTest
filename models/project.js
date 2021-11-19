@@ -2,7 +2,6 @@
 const {
   Model, Sequelize, DataTypes
 } = require('sequelize');
-const {User} = require('../models')
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
     /**
@@ -23,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 2
+      }
     },
     description: {
       type: DataTypes.STRING,
@@ -33,6 +35,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Project',
   });
-
   return Project;
 };
